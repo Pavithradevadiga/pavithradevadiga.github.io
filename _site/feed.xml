@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-09T21:03:42+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">AWS Shorts</title><subtitle>AWS Tricks,Tips and Code Snippets</subtitle><entry><title type="html">How to schedule lambda functions to run automatically and repeatedly</title><link href="http://localhost:4000/lambdaRecurrence/" rel="alternate" type="text/html" title="How to schedule lambda functions to run automatically and repeatedly" /><published>2021-11-30T15:12:21+05:30</published><updated>2021-11-30T15:12:21+05:30</updated><id>http://localhost:4000/lambdaRecurrence</id><content type="html" xml:base="http://localhost:4000/lambdaRecurrence/">&lt;p&gt;Welcome to the AWS-simple-programs-and-tricks wiki!&lt;/p&gt;
+
+&lt;p&gt;We might run into a situation where it is necessary to run a lambda function on repeated basis luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below.&lt;/p&gt;
+
+&lt;h2 id=&quot;firstly-we-need-to-create-a-simple-lambda-function&quot;&gt;Firstly we need to create a simple lambda function&lt;/h2&gt;
+&lt;p&gt;We can access lambda by searching for &lt;strong&gt;Lambda&lt;/strong&gt; in the search  bar ,Create a function we will name it &lt;em&gt;cronJobDemo&lt;/em&gt; ,we are creating a simple function in python language so the runtime would be python 3.9 next we would select &lt;strong&gt;create a role with basic lambda permissions&lt;/strong&gt; this role would have access to cloudwatch logs and that would be enough for us as of now. If you have complicated job of accessing S3 bucket or dynamoDB you can go ahead and add those permissions accordingly&lt;/p&gt;
+
+&lt;p&gt;Below is our simple lambda function in python:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/lambdaRecurrence/lambda code.png&quot; alt=&quot;lambda&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;once the function is setup we will set up cloudwatch&lt;/p&gt;
+
+&lt;h2 id=&quot;rule-creation-in-cloudwatch&quot;&gt;Rule Creation in CloudWatch&lt;/h2&gt;
+&lt;p&gt;We can access cloudwatch by searching for &lt;strong&gt;cloudwatch&lt;/strong&gt; in the search bar,In the left you would see &lt;strong&gt;Events&lt;/strong&gt; tab below that &lt;strong&gt;Rules&lt;/strong&gt; tab click on that&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/lambdaRecurrence/cloudwatch.png&quot; alt=&quot;cloudwatch&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When you click on rules you might be prompted to select &lt;strong&gt;Amazon EventBridge&lt;/strong&gt; ,we do not need eventBridge for our case so we can close that and continue with &lt;strong&gt;Go to cloudwatch Events&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Click on Create Rule -&amp;gt; Select Schedule -&amp;gt; We will select 1 minute for our demo -&amp;gt; Add Target : Here the target is our lambda function , we will select our lambda function &lt;em&gt;cronJobDemo&lt;/em&gt; and click on configure details&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/lambdaRecurrence/ruleCreation.png&quot; alt=&quot;ruleCreation&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Name the rule and give it description ,in our example the rule is named &lt;em&gt;1minuteInvocatio&lt;/em&gt; make sure it’s enabled and create the rule.&lt;/p&gt;
+
+&lt;p&gt;BAM that’s it now you have a rule that triggers the lambda function every minute&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/lambdaRecurrence/rule.png&quot; alt=&quot;rule&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you can verify if it’s working by following the below steps:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Open your lambda function&lt;/li&gt;
+  &lt;li&gt;Select Monitor  in the tab&lt;/li&gt;
+  &lt;li&gt;View logs in cloudwatch&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can check the logs and see our print statement getting logged every minute.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/lambdaRecurrence/logs.png&quot; alt=&quot;logs&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can disable the rule if you want it to stop at any moment.&lt;/p&gt;</content><author><name></name></author><category term="Lambda" /><category term="Functions" /><summary type="html">Welcome to the AWS-simple-programs-and-tricks wiki!</summary></entry></feed>
