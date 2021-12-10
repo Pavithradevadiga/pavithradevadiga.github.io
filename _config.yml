@@ -28,7 +28,7 @@ github_username:  Pavithradevadiga
 
 # Build settings
 #theme: minima
-theme : jekyll-theme-clean-blog
+theme : jekyll-theme-hacker
 plugins:
   - jekyll-feed
 
