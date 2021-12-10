@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title:  "How to schedule lambda functions to run automatically and repeatedly"
 date:   2021-11-30 15:12:21 +0530
 categories: Lambda Functions
