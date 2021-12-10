@@ -28,7 +28,7 @@ github_username:  Pavithradevadiga
 
 # Build settings
 #theme: minima
-theme : jekyll-theme-hacker
+theme : jekyll-theme-cayman
 plugins:
   - jekyll-feed
 
