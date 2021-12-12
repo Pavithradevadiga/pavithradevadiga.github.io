@@ -1,0 +1,114 @@
+---
+layout: post
+title:  "How to enable logs for lex bots"
+date:   2021-12-12 14:00:00 +0530
+categories: Lex V1
+---
+
+
+If you are someone who's struck on enabling logs for Lex V1 console,then you have landed on the right page.Below is the solution for your problem
+
+## We would need a log group in one of our steps so we shall create one now
+
+You need to search for **cloudwatch** in the search bar and open it,you will find **log groups** in the left,select that and click on **create log group**
+
+![gearIcon](/assets/images/lexLogs/cloudwatch.png)
+
+Enter a log group name(in my case it's __lex__) and click on **create**....
+
+There you go we have our __lex__ log group where we will check our logs
+
+## Now time to update the configurations in lex
+
+You need to search for **lex** in the search bar open your lex bot,navigate to **settings**(You can see 4 tabs in the top),click on **conversation logs** you will see a list of versions of your bot (in my case it's _prod_),you would see a **gear icon** at the end you need to click on that.
+
+
+![gearIcon](/assets/images/lexLogs/gearIcon.png)
+
+There you go now you have reached the page where can you set the role.
+
+For this case we will enable only text logs,So check the text logs box..and set our log group name to __lex__ which we created earlier
+
+Now we need to attach  roles  which we do not have yet,in our next step we will see how to do that 
+
+![lexConfiguration](/assets/images/lexLogs/lexConfiguration.png)
+
+## Role creation for lex through CLI
+
+You will have to install CLI tool for that,once you have downloaded the same and configured profile you can proceed further with below steps
+
+
+1.You  will have to create a json document and save it,I am naming it _lexLogsAssumeRolePolicy.json__
+
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Principal": {
+                "Service": "lex.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+            }
+        ]
+    }
+
+2.We will create a role now ,run the below command in the same path as you saved the directory 
+
+    aws iam create-role ^
+    --role-name lexi ^
+    --assume-role-policy-document file://lexLogsAssumeRolePolicy.json
+
+
+__lexi__ is the name of the policy you can name it whatever you want __lexLogsAssumeRolePolicy__ is the json document we created in __Step1__
+
+3.We will now create a json document which contains policy to create and put logs to cloudwatch,I have named it __lexCloudWatchLogsPolicy.json__
+
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                ],
+                "Resource": "arn:aws:logs:region:account-id:log-group:log-group-name:*"
+            }
+        ]
+    }
+  
+
+  replace region with your region id(like us-east-1,us-west-1 etc),account-id with your account name and log-group-name with your log group name in our case it's __lex__
+
+4)Now we will create a policy with above created document,run the below command in terminal,
+
+    aws iam create-policy ^
+    --policy-name lexiPolicy ^
+    --policy-document file://lexCloudWatchLogsPolicy.json
+
+ __lexiPolicy__ is our policy name and __lexCloudWatchLogsPolicy.json__ is the json document we created previously
+
+5)Our last step is to attach the policy to role ,below is the command for same
+
+    aws iam attach-role-policy ^
+    --policy-arn arn:aws:iam::account-id:policy/lexiPolicy ^
+    --role-name lexi
+
+ __lexiPolicy__ is our policy name and __lexi__ is the role we created..make sure to replace account-id with your **account-id**
+
+
+
+Once the above steps are followed we have our lexi role with lexiPolicy attached
+
+![lexiRole](/assets/images/lexLogs/lexiRole.png)
+
+
+And if you now comeback you can see our role listed in IAM role that can be attached to lex 
+
+![IAMRole](/assets/images/lexLogs/attachedIAMRole.png)
+
+Click on save and it's done
+
+
+

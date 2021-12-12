@@ -4,7 +4,7 @@ title:  "How to schedule lambda functions to run automatically and repeatedly"
 date:   2021-11-30 15:12:21 +0530
 categories: Lambda Functions
 ---
-Welcome to the AWS-simple-programs-and-tricks wiki!
+
 
 We might run into a situation where it is necessary to run a lambda function on repeated basis luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?...We will see that below.
 
