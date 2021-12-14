@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-12T15:45:01+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">AWS Shorts</title><subtitle>AWS Tricks,Tips and Code Snippets</subtitle><entry><title type="html">How to enable logs for lex bots</title><link href="http://localhost:4000/lex1Logs/" rel="alternate" type="text/html" title="How to enable logs for lex bots" /><published>2021-12-12T14:00:00+05:30</published><updated>2021-12-12T14:00:00+05:30</updated><id>http://localhost:4000/lex1Logs</id><content type="html" xml:base="http://localhost:4000/lex1Logs/">&lt;p&gt;If you are someone who’s struck on enabling logs for Lex V1 console,then you have landed on the right page.Below is the solution for your problem&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-14T18:26:11+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">AWS Shorts</title><subtitle>AWS Tricks,Tips and Code Snippets</subtitle><entry><title type="html">How to enable logs for lex bots</title><link href="http://localhost:4000/lex1Logs/" rel="alternate" type="text/html" title="How to enable logs for lex bots" /><published>2021-12-12T14:00:00+05:30</published><updated>2021-12-12T14:00:00+05:30</updated><id>http://localhost:4000/lex1Logs</id><content type="html" xml:base="http://localhost:4000/lex1Logs/">&lt;p&gt;If you are someone who’s struck on enabling logs for Lex V1 console,then you have landed on the right page.Below is the solution for your problem&lt;/p&gt;
 
-&lt;h2 id=&quot;we-would-need-a-log-group-in-one-of-our-steps-so-we-shall-create-one-now&quot;&gt;We would need a log group in one of our steps so we shall create one now&lt;/h2&gt;
+&lt;h2 id=&quot;we-will-create-a-log-group-which-we-will-be-using-in-our-future-steps&quot;&gt;We will create a log group which we will be using in our future steps&lt;/h2&gt;
 
 &lt;p&gt;You need to search for &lt;strong&gt;cloudwatch&lt;/strong&gt; in the search bar and open it,you will find &lt;strong&gt;log groups&lt;/strong&gt; in the left,select that and click on &lt;strong&gt;create log group&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/lexLogs/cloudwatch.png&quot; alt=&quot;gearIcon&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Enter a log group name(in my case it’s &lt;strong&gt;lex&lt;/strong&gt;) and click on &lt;strong&gt;create&lt;/strong&gt;….&lt;/p&gt;
+&lt;p&gt;Enter a log group name(in my case it’s &lt;strong&gt;lex&lt;/strong&gt;) and click on &lt;strong&gt;create&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;There you go we have our &lt;strong&gt;lex&lt;/strong&gt; log group where we will check our logs&lt;/p&gt;
+&lt;p&gt;There you go we have our &lt;strong&gt;lex&lt;/strong&gt; log group where we will check our logs.&lt;/p&gt;
 
 &lt;h2 id=&quot;now-time-to-update-the-configurations-in-lex&quot;&gt;Now time to update the configurations in lex&lt;/h2&gt;
 
@@ -28,7 +28,7 @@
 
 &lt;p&gt;You will have to install CLI tool for that,once you have downloaded the same and configured profile you can proceed further with below steps&lt;/p&gt;
 
-&lt;p&gt;1.You  will have to create a json document and save it,I am naming it _lexLogsAssumeRolePolicy.json__&lt;/p&gt;
+&lt;p&gt;1.You  will have to create a json document and save it,I am naming it &lt;strong&gt;lexLogsAssumeRolePolicy.json&lt;/strong&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
     &quot;Version&quot;: &quot;2012-10-17&quot;,
@@ -44,7 +44,7 @@
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;2.We will create a role now ,run the below command in the same path as you saved the directory&lt;/p&gt;
+&lt;p&gt;2.We will create a role now ,run the below command(if on linux use ‘/’ instead of ‘^’) in the same path as you saved the directory&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws iam create-role ^
 --role-name lexi ^
@@ -70,9 +70,9 @@
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;replace region with your region id(like us-east-1,us-west-1 etc),account-id with your account name and log-group-name with your log group name in our case it’s &lt;strong&gt;lex&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;replace region with your region id(like us-east-1,us-west-1 etc),account-id with your account id and log-group-name with your log group name in our case it’s &lt;strong&gt;lex&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;4)Now we will create a policy with above created document,run the below command in terminal,&lt;/p&gt;
+&lt;p&gt;4)Now we will create a policy with above created document,run the below command in terminal(if on linux use ‘/’ instead of ‘^’),&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws iam create-policy ^
 --policy-name lexiPolicy ^
@@ -88,7 +88,7 @@
 --role-name lexi
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;strong&gt;lexiPolicy&lt;/strong&gt; is our policy name and &lt;strong&gt;lexi&lt;/strong&gt; is the role we created..make sure to replace account-id with your &lt;strong&gt;account-id&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;lexiPolicy&lt;/strong&gt; is our policy name and &lt;strong&gt;lexi&lt;/strong&gt; is the role we created..make sure to replace account-id with your account-id&lt;/p&gt;
 
 &lt;p&gt;Once the above steps are followed we have our lexi role with lexiPolicy attached&lt;/p&gt;
 
@@ -98,16 +98,16 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/lexLogs/attachedIAMRole.png&quot; alt=&quot;IAMRole&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Click on save and it’s done&lt;/p&gt;</content><author><name></name></author><category term="Lex" /><category term="V1" /><summary type="html">If you are someone who’s struck on enabling logs for Lex V1 console,then you have landed on the right page.Below is the solution for your problem</summary></entry><entry><title type="html">How to schedule lambda functions to run automatically and repeatedly</title><link href="http://localhost:4000/lambdaRecurrence/" rel="alternate" type="text/html" title="How to schedule lambda functions to run automatically and repeatedly" /><published>2021-11-30T15:12:21+05:30</published><updated>2021-11-30T15:12:21+05:30</updated><id>http://localhost:4000/lambdaRecurrence</id><content type="html" xml:base="http://localhost:4000/lambdaRecurrence/">&lt;p&gt;We might run into a situation where it is necessary to run a lambda function on repeated basis luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below.&lt;/p&gt;
+&lt;p&gt;Click on save and it’s done&lt;/p&gt;</content><author><name></name></author><category term="Lex" /><category term="V1" /><summary type="html">If you are someone who’s struck on enabling logs for Lex V1 console,then you have landed on the right page.Below is the solution for your problem</summary></entry><entry><title type="html">How to schedule lambda functions to run automatically and repeatedly</title><link href="http://localhost:4000/lambdaRecurrence/" rel="alternate" type="text/html" title="How to schedule lambda functions to run automatically and repeatedly" /><published>2021-11-30T15:12:21+05:30</published><updated>2021-11-30T15:12:21+05:30</updated><id>http://localhost:4000/lambdaRecurrence</id><content type="html" xml:base="http://localhost:4000/lambdaRecurrence/">&lt;p&gt;We might run into a situation where it is necessary to run a lambda function on repeated basis, luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below.&lt;/p&gt;
 
-&lt;h2 id=&quot;firstly-we-need-to-create-a-simple-lambda-function&quot;&gt;Firstly we need to create a simple lambda function&lt;/h2&gt;
-&lt;p&gt;We can access lambda by searching for &lt;strong&gt;Lambda&lt;/strong&gt; in the search  bar ,Create a function we will name it &lt;em&gt;cronJobDemo&lt;/em&gt; ,we are creating a simple function in python language so the runtime would be python 3.9 next we would select &lt;strong&gt;create a role with basic lambda permissions&lt;/strong&gt; this role would have access to cloudwatch logs and that would be enough for us as of now. If you have complicated job of accessing S3 bucket or dynamoDB you can go ahead and add those permissions accordingly&lt;/p&gt;
+&lt;h2 id=&quot;we-will-create-a-simple-lambda-function&quot;&gt;We will create a simple lambda function&lt;/h2&gt;
+&lt;p&gt;We can access lambda by searching for &lt;strong&gt;Lambda&lt;/strong&gt; in the search  bar ,&lt;strong&gt;&lt;em&gt;Create a function&lt;/em&gt;&lt;/strong&gt; we will name it &lt;em&gt;cronJobDemo&lt;/em&gt; ,we are creating a simple function in python language so the runtime would be python 3.9 next we would select &lt;strong&gt;create a role with basic lambda permissions&lt;/strong&gt; this role would have access to cloudwatch logs and that would be enough for us as of now. If you have complicated job of accessing S3 bucket or dynamoDB you can go ahead and add those permissions accordingly.&lt;/p&gt;
 
 &lt;p&gt;Below is our simple lambda function in python:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/lambdaRecurrence/lambda code.png&quot; alt=&quot;lambda&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;once the function is setup we will set up cloudwatch&lt;/p&gt;
+&lt;p&gt;once the function is created we will set up cloudwatch .&lt;/p&gt;
 
 &lt;h2 id=&quot;rule-creation-in-cloudwatch&quot;&gt;Rule Creation in CloudWatch&lt;/h2&gt;
 &lt;p&gt;We can access cloudwatch by searching for &lt;strong&gt;cloudwatch&lt;/strong&gt; in the search bar,In the left you would see &lt;strong&gt;Events&lt;/strong&gt; tab below that &lt;strong&gt;Rules&lt;/strong&gt; tab click on that&lt;/p&gt;
@@ -120,9 +120,9 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/lambdaRecurrence/ruleCreation.png&quot; alt=&quot;ruleCreation&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Name the rule and give it description ,in our example the rule is named &lt;em&gt;1minuteInvocatio&lt;/em&gt; make sure it’s enabled and create the rule.&lt;/p&gt;
+&lt;p&gt;Name the rule and give it description ,in our example the rule is named &lt;em&gt;1minuteInvocation&lt;/em&gt; make sure it’s enabled and create the rule.&lt;/p&gt;
 
-&lt;p&gt;BAM that’s it now you have a rule that triggers the lambda function every minute&lt;/p&gt;
+&lt;p&gt;BAM that’s it!!! now you have a rule that triggers the lambda function every minute&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/lambdaRecurrence/rule.png&quot; alt=&quot;rule&quot; /&gt;&lt;/p&gt;
 
@@ -137,4 +137,4 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/lambdaRecurrence/logs.png&quot; alt=&quot;logs&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;You can disable the rule if you want it to stop at any moment.&lt;/p&gt;</content><author><name></name></author><category term="Lambda" /><category term="Functions" /><summary type="html">We might run into a situation where it is necessary to run a lambda function on repeated basis luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below.</summary></entry></feed>
+&lt;p&gt;You can disable the rule from &lt;strong&gt;clouwatch&lt;/strong&gt; if you want it to stop at any moment.&lt;/p&gt;</content><author><name></name></author><category term="Lambda" /><category term="Functions" /><summary type="html">We might run into a situation where it is necessary to run a lambda function on repeated basis, luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below.</summary></entry></feed>

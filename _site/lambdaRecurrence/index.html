@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.2.1" />
 <meta property="og:title" content="How to schedule lambda functions to run automatically and repeatedly" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="We might run into a situation where it is necessary to run a lambda function on repeated basis luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below." />
-<meta property="og:description" content="We might run into a situation where it is necessary to run a lambda function on repeated basis luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below." />
+<meta name="description" content="We might run into a situation where it is necessary to run a lambda function on repeated basis, luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below." />
+<meta property="og:description" content="We might run into a situation where it is necessary to run a lambda function on repeated basis, luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below." />
 <link rel="canonical" href="http://localhost:4000/lambdaRecurrence/" />
 <meta property="og:url" content="http://localhost:4000/lambdaRecurrence/" />
 <meta property="og:site_name" content="AWS Shorts" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="How to schedule lambda functions to run automatically and repeatedly" />
 <script type="application/ld+json">
-{"headline":"How to schedule lambda functions to run automatically and repeatedly","dateModified":"2021-11-30T15:12:21+05:30","datePublished":"2021-11-30T15:12:21+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/lambdaRecurrence/"},"url":"http://localhost:4000/lambdaRecurrence/","@type":"BlogPosting","description":"We might run into a situation where it is necessary to run a lambda function on repeated basis luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below.","@context":"https://schema.org"}</script>
+{"headline":"How to schedule lambda functions to run automatically and repeatedly","dateModified":"2021-11-30T15:12:21+05:30","datePublished":"2021-11-30T15:12:21+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/lambdaRecurrence/"},"url":"http://localhost:4000/lambdaRecurrence/","@type":"BlogPosting","description":"We might run into a situation where it is necessary to run a lambda function on repeated basis, luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="AWS Shorts" /></head>
 <body><header class="site-header" role="banner">
@@ -47,16 +47,16 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>We might run into a situation where it is necessary to run a lambda function on repeated basis luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below.</p>
+    <p>We might run into a situation where it is necessary to run a lambda function on repeated basis, luckily we have cloudwatch for that on AWS to create a rule and achieve the same.How to do that?…We will see that below.</p>
 
-<h2 id="firstly-we-need-to-create-a-simple-lambda-function">Firstly we need to create a simple lambda function</h2>
-<p>We can access lambda by searching for <strong>Lambda</strong> in the search  bar ,Create a function we will name it <em>cronJobDemo</em> ,we are creating a simple function in python language so the runtime would be python 3.9 next we would select <strong>create a role with basic lambda permissions</strong> this role would have access to cloudwatch logs and that would be enough for us as of now. If you have complicated job of accessing S3 bucket or dynamoDB you can go ahead and add those permissions accordingly</p>
+<h2 id="we-will-create-a-simple-lambda-function">We will create a simple lambda function</h2>
+<p>We can access lambda by searching for <strong>Lambda</strong> in the search  bar ,<strong><em>Create a function</em></strong> we will name it <em>cronJobDemo</em> ,we are creating a simple function in python language so the runtime would be python 3.9 next we would select <strong>create a role with basic lambda permissions</strong> this role would have access to cloudwatch logs and that would be enough for us as of now. If you have complicated job of accessing S3 bucket or dynamoDB you can go ahead and add those permissions accordingly.</p>
 
 <p>Below is our simple lambda function in python:</p>
 
 <p><img src="/assets/images/lambdaRecurrence/lambda code.png" alt="lambda" /></p>
 
-<p>once the function is setup we will set up cloudwatch</p>
+<p>once the function is created we will set up cloudwatch .</p>
 
 <h2 id="rule-creation-in-cloudwatch">Rule Creation in CloudWatch</h2>
 <p>We can access cloudwatch by searching for <strong>cloudwatch</strong> in the search bar,In the left you would see <strong>Events</strong> tab below that <strong>Rules</strong> tab click on that</p>
@@ -69,9 +69,9 @@
 
 <p><img src="/assets/images/lambdaRecurrence/ruleCreation.png" alt="ruleCreation" /></p>
 
-<p>Name the rule and give it description ,in our example the rule is named <em>1minuteInvocatio</em> make sure it’s enabled and create the rule.</p>
+<p>Name the rule and give it description ,in our example the rule is named <em>1minuteInvocation</em> make sure it’s enabled and create the rule.</p>
 
-<p>BAM that’s it now you have a rule that triggers the lambda function every minute</p>
+<p>BAM that’s it!!! now you have a rule that triggers the lambda function every minute</p>
 
 <p><img src="/assets/images/lambdaRecurrence/rule.png" alt="rule" /></p>
 
@@ -86,7 +86,7 @@
 
 <p><img src="/assets/images/lambdaRecurrence/logs.png" alt="logs" /></p>
 
-<p>You can disable the rule if you want it to stop at any moment.</p>
+<p>You can disable the rule from <strong>clouwatch</strong> if you want it to stop at any moment.</p>
 
 
   </div><a class="u-url" href="/lambdaRecurrence/" hidden></a>
